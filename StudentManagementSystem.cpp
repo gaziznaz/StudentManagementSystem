@@ -12,10 +12,10 @@ class student
     char name[80];
     char gr[80];
     int nom;
-    double pro, ds, saya, sum, gpa;
+    double pro, ds, pol, sum, gpa;
 
 public:
-    void engizu()
+    void newStudent()
     {
         system("cls");
         student s;
@@ -23,80 +23,80 @@ public:
         outfile.open("Report.txt", ios::app | ios::binary);
         if (outfile.fail())
         {
-            std::cout<< "ФАЙЛ АШЫЛМАДЫ..." << endl;
+            std::cout << "error: can`t open file..." << endl;
             std::cin.ignore();
             std::cin.get();
         }
-        std::cout<< "\n\n";
-        std::cout<< "\t\t\t\t=======ЖАНА СТУДЕНТ ЕНГИЗУ========\n\n";
-        std::cout<< "АТЫ-ЖОНИ :";
+        std::cout << "\n\n";
+        std::cout << "\t\t\t\t=======ADD NEW STUDENT========\n\n";
+        std::cout << "FULL NAME : ";
         std::cin.ignore();
         std::cin.getline(s.name, 80);
-        std::cout<< "ТОБЫ : ";
+        std::cout << "GROUP : ";
         std::cin.get(s.gr, 80);
-        std::cout<< "ID НОМЕРИ :";
+        std::cout << "ID : ";
         while (!(std::cin >> s.nom) || (std::cin.peek() != '\n'))
         {
             std::cin.clear();
             while (std::cin.get() != '\n')
                 ;
-            std::cout<< "Кате! Бутин сан болуы керек! Кайта енгизип кориниз!" << endl;
-            std::cout<< "ID НОМЕРИ :";
+            std::cout << "error: Score must be an integer. Try again!" << endl;
+            std::cout << "ID :";
         }
-        std::cout<< "Багалары:" << endl;
+        std::cout << "GRADES:" << endl;
     pro:
-        std::cout<< "\tБАГДАРЛАМАЛАУ ТИЛДЕРИ:С, С++ :";
+        std::cout << "\tPROGRAM LANGUAGES: C, C++ :";
         while (!(std::cin >> s.pro))
         {
             std::cin.clear();
             while (std::cin.get() != '\n')
                 ;
-            std::cout<< "Кате! Накты сан болуы кажет! Кайта енгизип кориниз!" << endl;
-            std::cout<< "\tБАГДАРЛАМАЛАУ ТИЛДЕРИ:С, С++ :";
+            std::cout << "error: Score must be an integer. Try again!" << endl;
+            std::cout << "\tPROGRAM LANGUAGES: C, C++ :";
         }
         if (s.pro < 0 || s.pro > 100)
         {
-            std::cout<< "\tБАГА 0-100 АРАЛЫГЫНДА БОЛУ КЕРЕК\n КАЙТА ЕНГИЗИНИЗ\n";
+            std::cout << "\terror: Score must be between 0-100.\n Try again!\n";
             goto pro;
         }
     ds:
-        std::cout<< "\tДИСКРЕТТИК КУРЫЛЫМДАР :";
+        std::cout << "\tDISCRETE STRUCTURES :";
         while (!(std::cin >> s.ds))
         {
             std::cin.clear();
             while (std::cin.get() != '\n')
                 ;
-            std::cout<< "Кате! Накты сан болуы кажет! Кайта енгизип кориниз!" << endl;
-            std::cout<< "\tБАГДАРЛАМАЛАУ ТИЛДЕРИ:С, С++ :";
+            std::cout << "error: Score must be an integer. Try again!" << endl;
+            std::cout << "\tPROGRAM LANGUAGES: C, C++ :";
         }
         if (s.ds < 0 || s.ds > 100)
         {
-            std::cout<< "\tБАГА 0-100 АРАЛЫГЫНДА БОЛУ КЕРЕК\n КАЙТА ЕНГИЗИНИЗ\n";
+            std::cout << "\terror: Score must be between 0-100.\n Try again!\n";
             goto ds;
         }
-    saya:
-        std::cout<< "\tСАЯСАТТАНУ :";
-        while (!(std::cin >> s.saya))
+    pol:
+        std::cout << "\tPOLITICAL SCIENCE :";
+        while (!(std::cin >> s.pol))
         {
             std::cin.clear();
             while (std::cin.get() != '\n')
                 ;
-            std::cout<< "Кате! Накты сан болуы кажет! Кайта енгизип кориниз!" << endl;
-            std::cout<< "\tБАГДАРЛАМАЛАУ ТИЛДЕРИ:С, С++ :";
+            std::cout << "error: Score must be an integer. Try again!" << endl;
+            std::cout << "\tPROGRAM LANGUAGES: C, C++ :";
         }
-        if (s.saya < 0 || s.saya > 100)
+        if (s.pol < 0 || s.pol > 100)
         {
-            std::cout<< "\tБАГА 0-100 АРАЛЫГЫНДА БОЛУ КЕРЕК\n КАЙТА ЕНГИЗИНИЗ\n";
-            goto saya;
+            std::cout << "\terror: Score must be between 0-100.\n Try again!\n";
+            goto pol;
         }
-        s.sum = s.pro + s.ds + s.saya;
+        s.sum = s.pro + s.ds + s.pol;
         s.gpa = ((s.sum / 3) * 0.04);
         outfile.write(reinterpret_cast<char *>(&s), sizeof(student));
         outfile.close();
-        std::cout<< endl;
-        std::cout<< "\t\t\t\tЖАНА СТУДЕНТ ЕНГИЗИЛДИ" << endl;
-        std::cout<< endl;
-        std::cout<< "жалгастыру ушин пернени басыныз...";
+        std::cout << endl;
+        std::cout << "\t\t\t\tNEW STUDENT ADDED" << endl;
+        std::cout << endl;
+        std::cout << "press enter to continue...";
         std::cin.ignore();
         std::cin.get();
     }
@@ -109,131 +109,131 @@ public:
         Sleep(sleepMs);
 #endif
     }
-    void kirispe()
+    void welcome()
     {
-        std::cout<< "\n\n\n";
+        std::cout << "\n\n\n";
         mySleep(300);
-        std::cout<< "\t\t\t *  *   ***  *  *  *  *  * ****     *  ***  * *  *  * **** " << endl;
+        std::cout << "\t\t\t *     *  ****  *      ****   ***   *     *  ****  * " << endl;
         mySleep(300);
-        std::cout<< "\t\t\t * *   *   * *  *  *  * *  *       **  * *  * *  *  *     * " << endl;
+        std::cout << "\t\t\t *  *  *  *     *     *      *   *  **   **  *     * " << endl;
         mySleep(300);
-        std::cout<< "\t\t\t **    *   * *  *  *  **   ****   * *  * *  * ****  *  ** " << endl;
+        std::cout << "\t\t\t *  *  *  ****  *     *      *   *  *  *  *  ****  * " << endl;
         mySleep(300);
-        std::cout<< "\t\t\t * * * *   * *  *  *  * *  *     *  * ***** * *  ** *     * " << endl;
+        std::cout << "\t\t\t *  *  *  *     *     *      *   *  *     *  * " << endl;
         mySleep(300);
-        std::cout<< "\t\t\t *   *  ***  *******  *  * **** *   * *   * * *   * * **** " << endl;
+        std::cout << "\t\t\t  ** **   ****  ****   ****   ***   *     *  ****  * " << endl;
         mySleep(300);
-        std::cout<< endl;
-        std::cout<< "\t\t\t\t\t -------------------------------" << endl;
+        std::cout << endl;
+        std::cout << "\t\t\t\t\t -------------------------------" << endl;
         mySleep(500);
-        std::cout<< "\t\t\t\t\t STUDENT MANAGEMENT SYSTEM" << endl;
+        std::cout << "\t\t\t\t\t   STUDENT MANAGEMENT SYSTEM" << endl;
         mySleep(500);
-        std::cout<< "\t\t\t\t\t -------------------------------" << endl;
+        std::cout << "\t\t\t\t\t -------------------------------" << endl;
         mySleep(500);
     }
-    void basmazir()
+    void Menu()
     {
         system("color 5f");
         char cc;
         char cl;
-        std::cout<< "\t\t\t\t=================БАС МАЗИР================\n\n"
-             << endl;
+        std::cout << "\t\t\t\t=================MENU================\n\n"
+                  << endl;
         mySleep(300);
-        std::cout<< "\t\t\t\t1. ЖАНА СТУДЕНТ ЕНГИЗУ\n\n"
-             << endl;
+        std::cout << "\t\t\t\t1. ADD NEW STUDENT\n\n"
+                  << endl;
         mySleep(200);
-        std::cout<< "\t\t\t\t2. МАЛИМЕТТЕРДИ КОРУ\n\n"
-             << endl;
+        std::cout << "\t\t\t\t2. VIEWING DATA\n\n"
+                  << endl;
         mySleep(200);
-        std::cout<< "\t\t\t\t3. СТУДЕНТТИ ИЗДЕУ\n\n"
-             << endl;
+        std::cout << "\t\t\t\t3. SEARCH FOR STUDENTS\n\n"
+                  << endl;
         mySleep(200);
-        std::cout<< "\t\t\t\t4. МАЛИМЕТКЕ ОЗГЕРИС ЕНГИЗУ\n\n"
-             << endl;
+        std::cout << "\t\t\t\t4. CHANGE DATA\n\n"
+                  << endl;
         mySleep(200);
-        std::cout<< "\t\t\t\t5. ЖУРНАЛ\n\n"
-             << endl;
+        std::cout << "\t\t\t\t5. REGISTER\n\n"
+                  << endl;
         mySleep(200);
-        std::cout<< "\t\t\t\t6. СТУДЕНТ МАЛИМЕТТЕРИН ЖОЮ\n\n"
-             << endl;
+        std::cout << "\t\t\t\t6. DELETE STUDENT DATA\n\n"
+                  << endl;
         mySleep(200);
-        std::cout<< "\t\t\t\t7. АНЫКТАМА АЛУ \n\n"
-             << endl;
+        std::cout << "\t\t\t\t7. GET REFERENCE \n\n"
+                  << endl;
         mySleep(200);
-        std::cout<< "\t\t\t\t8. <- АРТКА \n"
-             << endl;
+        std::cout << "\t\t\t\t8. <- BACK \n"
+                  << endl;
         mySleep(200);
-        std::cout<< "\t\t\t\t==============================" << endl;
+        std::cout << "\t\t\t\t==============================" << endl;
         mySleep(300);
-        std::cout<< "\t\t\t\tТАНДАУ ЖАСАНЫЗ: <1-8> :";
+        std::cout << "\t\t\t\tMAKE A CHOICE: <1-8> :";
         mySleep(300);
         std::cin >> cc;
-        std::cout<< endl;
+        std::cout << endl;
         switch (cc)
         {
         case '1':
         {
-            engizu();
+            newStudent();
             break;
         }
         case '2':
         {
-            barlygy();
+            all();
             break;
         }
         case '3':
         {
             int n;
-            std::cout<< "СТУДЕНТТИН ID НОМЕРИН ЕНГИЗИНИЗ :";
+            std::cout << "PLEARE ENTER STUDENT ID :";
             std::cin >> n;
-            zheke_student(n);
+            astudent(n);
             break;
         }
         case '4':
         {
             int n;
-            std::cout<< "СТУДЕНТТИН ID НОМЕРИН ЕНГИЗИНИЗ :";
+            std::cout << "PLEARE ENTER STUDENT ID :";
             std::cin >> n;
-            ozgertu(n);
+            change(n);
             break;
         }
         case '5':
         {
-            zhurnal();
+            regist();
             break;
         }
         case '6':
         {
             system("cls");
-            std::cout<< "\t\t\t\t===========СТУДЕНТ МАЛИМЕТТЕРИН ЖОЮ==========\n\n";
-            std::cout<< "\t\t\t\t1. ЖЕКЕ СТУДЕНТТИН МАЛИМЕТИН ЖОЮ\n\n"
-                 << endl;
-            std::cout<< "\t\t\t\t2. БАРЛЫК СТУДЕНТТЕРДИН МАЛИМЕТТЕРИН ЖОЮ\n\n"
-                 << endl;
-            std::cout<< "\t\t\t\t3. <- АРТКА\n\n"
-                 << endl;
-            std::cout<< "\t\t\t\tТАНДАУ ЖАСАНЫЗ:";
+            std::cout << "\t\t\t\t===========DELETE STUDENT DATA==========\n\n";
+            std::cout << "\t\t\t\t1. DELETE STUDENT DATA\n\n"
+                      << endl;
+            std::cout << "\t\t\t\t2. DELETE DATA FOR ALL STUDENTS\n\n"
+                      << endl;
+            std::cout << "\t\t\t\t3. <- BACK\n\n"
+                      << endl;
+            std::cout << "\t\t\t\tMAKE A CHOICE:";
             std::cin >> cl;
-            std::cout<< endl;
+            std::cout << endl;
             switch (cl)
             {
             case '1':
             {
                 int n;
-                std::cout<< "СТУДЕНТТИН ID НОМЕРИН ЕНГИЗИНИЗ :";
+                std::cout << "ENTER THE STUDENT ID:";
                 std::cin >> n;
-                std::cout<< endl;
-                oshiru(n);
+                std::cout << endl;
+                del(n);
                 break;
             }
             case '2':
             {
-                barinoshiru();
+                deleteAll();
                 break;
             }
             case '3':
             {
-                basmazir();
+                Menu();
                 break;
             }
             }
@@ -242,9 +242,9 @@ public:
         case '7':
         {
             int n;
-            std::cout<< " АНЫКТАМА АЛГЫНЫЗ КЕЛГЕН СТУДЕНТТИН ID НОМЕРИН ЕНГИЗИНИЗ:";
+            std::cout << " ENTER YOUR ID TO GET REFERENCE:";
             std::cin >> n;
-            anyktama(n);
+            reference(n);
             break;
         }
         case '8':
@@ -253,7 +253,7 @@ public:
         }
         }
     }
-    void barlygy()
+    void all()
     {
         system("cls");
         student s;
@@ -262,35 +262,35 @@ public:
         infile.open("Report.txt", ios::app | ios::binary);
         if (infile.fail())
         {
-            std::cout<< "ФАЙЛ АШЫЛМАДЫ..." << endl;
+            std::cout << "error: can`t open file..." << endl;
             std::cin.ignore();
             std::cin.get();
         }
-        std::cout<< "\n\n";
-        std::cout<< "\t\t\t\tБАРЛЫК СТУДЕНТТЕРДИН МАЛИМЕТТЕРИ" << endl;
-        std::cout<< "==================================================================================" << endl;
+        std::cout << "\n\n";
+        std::cout << "\t\t\t\tDATA OF ALL STUDENTS" << endl;
+        std::cout << "==================================================================================" << endl;
         while (infile.read(reinterpret_cast<char *>(&s), sizeof(student)))
         {
-            std::cout<< "\t\t\tАТЫ-ЖОНИ :" << s.name << endl;
-            std::cout<< "\t\t\tТОБЫ :" << s.gr << endl;
-            std::cout<< "\t\t\tID НОМЕРИ :" << s.nom << endl;
-            std::cout<< "\t\t\tБагалары:" << endl;
-            std::cout<< "\t\t\t\tБАГДАРЛАМАЛАУ ТИЛДЕРИ: С, С++ :" << s.pro << endl;
-            std::cout<< "\t\t\t\tДИСКРЕТТИК КУРЫЛЫМДАР :" << s.ds << endl;
-            std::cout<< "\t\t\t\tСАЯСАТТАНУ :" << s.saya << endl;
-            std::cout<< "\t\t\tGPA :" << s.gpa << endl;
-            std::cout<< "==================================================================================" << endl;
+            std::cout << "\t\t\tFULL NAME :" << s.name << endl;
+            std::cout << "\t\t\tGROUP :" << s.gr << endl;
+            std::cout << "\t\t\tID :" << s.nom << endl;
+            std::cout << "\t\t\tGRADES:" << endl;
+            std::cout << "\t\t\t\tPROGRAM LANGUAGES: C, C++ :" << s.pro << endl;
+            std::cout << "\t\t\t\tDISCRETE STRUCTURES :" << s.ds << endl;
+            std::cout << "\t\t\t\tPOLITICAL SCIENCE :" << s.pol << endl;
+            std::cout << "\t\t\tGPA :" << s.gpa << endl;
+            std::cout << "==================================================================================" << endl;
             check = true;
         }
         infile.close();
         if (check == false)
-            std::cout<< "\t\t\t\tМАЛИМЕТТЕР ТАБЫЛМАДЫ..." << endl
-                 << endl;
-        std::cout<< "жалгастыру ушин пернени басыныз...";
+            std::cout << "\t\t\t\tINFO NOT FOUND..." << endl
+                      << endl;
+        std::cout << "press enter to continue...";
         std::cin.ignore();
         std::cin.get();
     }
-    void zheke_student(int n)
+    void astudent(int n)
     {
         system("cls");
         student s;
@@ -298,37 +298,37 @@ public:
         infile.open("Report.txt", ios::app | ios::binary);
         if (infile.fail())
         {
-            std::cout<< "ФАЙЛ АШЫЛМАДЫ...";
+            std::cout << "error: can`t open file...";
             std::cin.ignore();
             std::cin.get();
         }
         bool equality = false;
-        std::cout<< "\t\t\t\t============ЖЕКЕ СТУДЕНТТИН МАЛИМЕТИ============\n\n";
+        std::cout << "\t\t\t\t============STUDENT'S PERSONAL DATA============\n\n";
         while (infile.read(reinterpret_cast<char *>(&s), sizeof(student)))
         {
             if (s.nom == n)
             {
-                std::cout<< "\t\t\tАТЫ-ЖОНИ :" << s.name << endl;
-                std::cout<< "\t\t\tТОБЫ :" << s.gr << endl;
-                std::cout<< "\t\t\tID НОМЕРИ :" << s.nom << endl;
-                std::cout<< "\t\t\tБагалары:" << endl;
-                std::cout<< "\t\t\t\tБАГДАРЛАМАЛАУ ТИЛДЕРИ: С, С++ :" << s.pro << endl;
-                std::cout<< "\t\t\t\tДИСКРЕТТИК КУРЫЛЫМДАР :" << s.ds << endl;
-                std::cout<< "\t\t\t\tСАЯСАТТАНУ :" << s.saya << endl;
-                std::cout<< "\t\t\tGPA :" << s.gpa << endl;
-                std::cout<< "\t\t\t\t================================================" << endl;
+                std::cout << "\t\t\tFULL NAME :" << s.name << endl;
+                std::cout << "\t\t\tGROUP :" << s.gr << endl;
+                std::cout << "\t\t\tID :" << s.nom << endl;
+                std::cout << "\t\t\tGRADES:" << endl;
+                std::cout << "\t\t\t\tPROGRAM LANGUAGES: C, C++ :" << s.pro << endl;
+                std::cout << "\t\t\t\tDISCRETE STRUCTURES :" << s.ds << endl;
+                std::cout << "\t\t\t\tPOLITICAL SCIENCE :" << s.pol << endl;
+                std::cout << "\t\t\tGPA :" << s.gpa << endl;
+                std::cout << "\t\t\t\t================================================" << endl;
                 equality = true;
             }
         }
         infile.close();
         if (equality == false)
-            std::cout<< "\t\t\t\tМАЛИМЕТ ТАБЫЛМАДЫ..." << endl;
-        std::cout<< endl;
-        std::cout<< "жалгастыру ушин пернени басыныз...";
+            std::cout << "\t\t\t\tINFO NOT FOUND..." << endl;
+        std::cout << endl;
+        std::cout << "press enter to continue...";
         std::cin.ignore();
         std::cin.get();
     }
-    void zhurnal()
+    void regist()
     {
         system("cls");
         student s;
@@ -337,32 +337,32 @@ public:
         infile.open("Report.txt", ios::app | ios::binary);
         if (infile.fail())
         {
-            std::cout<< "ФАЙЛ АШЫЛМАДЫ...";
+            std::cout << "error: can`t open file...";
             std::cin.ignore();
             std::cin.get();
         }
-        std::cout<< "\n\n";
-        std::cout<< "\t\t\t\tЖУРНАЛ" << endl;
-        std::cout<< "=======================================================================================" << endl;
-        std::cout<< "\t\t\tС, С++ \t Дис.курылым \t Саясаттану \t| GPA" << endl;
-        std::cout<< "=======================================================================================" << endl;
+        std::cout << "\n\n";
+        std::cout << "\t\t\t\tREGISTER" << endl;
+        std::cout << "=======================================================================================" << endl;
+        std::cout << "\t\t\tС, С++ \tDISCRETE S.\tPOLITICAL S.\t| GPA" << endl;
+        std::cout << "=======================================================================================" << endl;
         while (infile.read(reinterpret_cast<char *>(&s), sizeof(student)))
         {
-            std::cout<< "\t\t\t\t\n"
-                 << s.name << "\t" << s.pro << "\t\t" << s.ds
-                 << "\t\t" << s.saya << "\t| " << s.gpa << endl;
-            std::cout<< "=======================================================================================" << endl;
+            std::cout << "\t\t\t\t\n"
+                      << s.name << "\t" << s.pro << "\t\t" << s.ds
+                      << "\t\t" << s.pol << "\t| " << s.gpa << endl;
+            std::cout << "=======================================================================================" << endl;
             eq = true;
         }
         infile.close();
         if (eq == false)
-            std::cout<< "\t\t\t\tМАЛИМЕТТЕР ТАБЫЛМАДЫ..." << endl
-                 << endl;
-        std::cout<< "жалгастыру ушин пернени басыныз...";
+            std::cout << "\t\t\t\tINFO NOT FOUND..." << endl
+                      << endl;
+        std::cout << "press enter to continue...";
         std::cin.ignore();
         std::cin.get();
     }
-    void ozgertu(int n)
+    void change(int n)
     {
         system("cls");
         student s;
@@ -370,110 +370,110 @@ public:
         infile.open("Report.txt", ios::binary | ios::in | ios::out);
         if (infile.fail())
         {
-            std::cout<< "ФАЙЛ АШЫЛМАЙДЫ..." << endl;
+            std::cout << "error: can`t open file..." << endl;
             std::cin.ignore();
             std::cin.get();
         }
         bool checker = false;
-        std::cout<< "\t\t\t\t==========МАЛИМЕТКЕ ОЗГЕРИС ЕНГИЗУ==========\n\n";
+        std::cout << "\t\t\t\t==========CHANGE DATA==========\n\n";
         while (!infile.eof() && checker == false)
         {
             infile.read(reinterpret_cast<char *>(&s), sizeof(student));
             {
                 if (s.nom == n)
                 {
-                    std::cout<< "\t\t\tАТЫ-ЖОНИ :" << s.name << endl;
-                    std::cout<< "\t\t\tТОБЫ :" << s.gr << endl;
-                    std::cout<< "\t\t\tID НОМЕРИ :" << s.nom << endl;
-                    std::cout<< "\t\t\tБагалары:" << endl;
-                    std::cout<< "\t\t\t\tБАГДАРЛАМАЛАУ ТИЛДЕРИ: С, С++ :" << s.pro << endl;
-                    std::cout<< "\t\t\t\tДИСКРЕТТИК КУРЫЛЫМДАР :" << s.ds << endl;
-                    std::cout<< "\t\t\t\tСАЯСАТТАНУ :" << s.saya << endl;
-                    std::cout<< "============================================="
-                         << endl;
-                    std::cout<< "\t\tЖАНА МАЛИМЕТТИ ЕНГИЗИНИЗ" << endl;
-                    std::cout<< "============================================="
-                         << endl;
-                    std::cout<< "АТЫ-ЖОНИ :";
+                    std::cout << "\t\t\tFULL NAME :" << s.name << endl;
+                    std::cout << "\t\t\tGROUP :" << s.gr << endl;
+                    std::cout << "\t\t\tID :" << s.nom << endl;
+                    std::cout << "\t\t\tGRADES:" << endl;
+                    std::cout << "\t\t\t\tPROGRAM LANGUAGES: C, C++ :" << s.pro << endl;
+                    std::cout << "\t\t\t\tDISCRETE STRUCTURES :" << s.ds << endl;
+                    std::cout << "\t\t\t\tPOLITICAL SCIENCE :" << s.pol << endl;
+                    std::cout << "============================================="
+                              << endl;
+                    std::cout << "\t\tENTER A NEW DATA" << endl;
+                    std::cout << "============================================="
+                              << endl;
+                    std::cout << "FULL NAME :";
                     std::cin.ignore();
                     std::cin.getline(s.name, 80);
-                    std::cout<< "ТОБЫ :";
+                    std::cout << "GROUP :";
                     std::cin.get(s.gr, 80);
-                    std::cout<< "ID НОМЕРИ :";
+                    std::cout << "ID :";
                     while (!(std::cin >> s.nom) || (std::cin.peek() != '\n'))
                     {
                         std::cin.clear();
                         while (std::cin.get() != '\n')
                             ;
-                        std::cout<< "Кате! Бутин сан болуы кажет! Кайта енгизип кориниз!" << endl;
-                        std::cout<< "ID НОМЕРИ :";
+                        std::cout << "error: Score must be an integer. Try again!" << endl;
+                        std::cout << "ID :";
                     }
                 pro:
-                    std::cout<< "БАГДАРЛАМАЛАУ ТИЛДЕРИ:С, С++ :";
+                    std::cout << "PROGRAM LANGUAGES: C, C++ :";
                     while (!(std::cin >> s.pro))
                     {
                         std::cin.clear();
                         while (std::cin.get() != '\n')
                             ;
-                        std::cout<< "Кате! Накты сан болуы кажет! Кайта енгизип кориниз!" << endl;
-                        std::cout<< "БАГДАРЛАМАЛАУ ТИЛДЕРИ:С, С++ :";
+                        std::cout << "error: Score must be an integer. Try again!" << endl;
+                        std::cout << "PROGRAM LANGUAGES: C, C++ :";
                     }
                     if (s.pro < 0 || s.pro > 100)
                     {
-                        std::cout<< "\tБАГА 0-100 АРАЛЫГЫНДА БОЛУ КЕРЕК\n КАЙТА ЕНГИЗИНИЗ\n";
+                        std::cout << "\terror: Score must be between 0-100.\n Try again!\n";
                         goto pro;
                     }
                 ds:
-                    std::cout<< "ДИСКРЕТТИК КУРЫЛЫМДАР :";
+                    std::cout << "DISCRETE STRUCTURES :";
                     while (!(std::cin >> s.ds))
                     {
                         std::cin.clear();
                         while (std::cin.get() != '\n')
                             ;
-                        std::cout<< "Кате! Накты сан болуы кажет! Кайта енгизип кориниз!" << endl;
-                        std::cout<< "ДИСКРЕТТИК КУРЫЛЫМДАР :";
+                        std::cout << "error: Score must be an integer. Try again!" << endl;
+                        std::cout << "DISCRETE STRUCTURES :";
                     }
                     if (s.ds < 0 || s.ds > 100)
                     {
-                        std::cout<< "\tБАГА 0-100 АРАЛЫГЫНДА БОЛУ КЕРЕК\n КАЙТА ЕНГИЗИНИЗ\n";
+                        std::cout << "\terror: Score must be between 0-100.\n Try again!\n";
                         goto ds;
                     }
-                saya:
-                    std::cout<< "САЯСАТТАНУ :";
-                    while (!(std::cin >> s.saya))
+                pol:
+                    std::cout << "POLITICAL SCIENCE :";
+                    while (!(std::cin >> s.pol))
                     {
                         std::cin.clear();
                         while (std::cin.get() != '\n')
                             ;
-                        std::cout<< "Кате! Накты сан болуы кажет! Кайта енгизип кориниз!" << endl;
-                        std::cout<< "САЯСАТТАНУ :";
+                        std::cout << "error: Score must be an integer. Try again!" << endl;
+                        std::cout << "POLITICAL SCIENCE :";
                     }
-                    if (s.saya < 0 || s.saya > 100)
+                    if (s.pol < 0 || s.pol > 100)
                     {
-                        std::cout<< "\tБАГА 0-100 АРАЛЫГЫНДА БОЛУ КЕРЕК\n КАЙТА ЕНГИЗИНИЗ\n";
-                        goto saya;
+                        std::cout << "\terror: Score must be between 0-100.\n Try again!\n";
+                        goto pol;
                     }
-                    s.sum = s.pro + s.ds + s.saya;
+                    s.sum = s.pro + s.ds + s.pol;
                     s.gpa = ((s.sum / 3) * 0.04);
                     int pos = (-1) * static_cast<int>(sizeof(student));
                     infile.seekp(pos, ios::cur);
                     infile.write(reinterpret_cast<char *>(&s),
                                  sizeof(student));
-                    std::cout<< endl;
-                    std::cout<< "\t\t\t\tМАЛИМЕТТЕРДИ ОЗГЕРТУ САТТИ АЯКТАЛДЫ" << endl;
+                    std::cout << endl;
+                    std::cout << "\t\t\t\tCHANGES SAVED" << endl;
                     checker = true;
                 }
             }
         }
         infile.close();
         if (checker == false)
-            std::cout<< "\t\t\t\tМАЛИМЕТ ТАБЫЛМАДЫ" << endl;
-        std::cout<< endl;
-        std::cout<< "жалгастыру ушин пернени басыныз...";
+            std::cout << "\t\t\t\tINFO NOT FOUND" << endl;
+        std::cout << endl;
+        std::cout << "press enter to continue...";
         std::cin.ignore();
         std::cin.get();
     }
-    void oshiru(int n)
+    void del(int n)
     {
         student s;
         int r;
@@ -481,14 +481,14 @@ public:
         infile.open("Report.txt", ios::binary);
         if (!infile)
         {
-            std::cout<< "ФАЙЛ АШЫЛМАЙДЫ..." << endl;
+            std::cout << "error: can`t open file..." << endl;
             std::cin.ignore();
             std::cin.get();
         }
         ofstream outfile;
         outfile.open("Record2.txt", ios::binary);
         infile.seekg(0, ios::beg);
-        std::cout<< "\t\t\t\t=============================================\n\n";
+        std::cout << "\t\t\t\t=============================================\n\n";
         while (infile.read(reinterpret_cast<char *>(&s), sizeof(student)))
         {
             if (s.nom != n)
@@ -497,51 +497,51 @@ public:
             }
             else
             {
-                std::cout<< "\t\t\t\tМАЛИМЕТ ЖОЙЫЛДЫ" << endl;
+                std::cout << "\t\t\t\tDATA DELETED" << endl;
             }
         }
         infile.close();
         outfile.close();
         remove("Report.txt");
         r = rename("Record2.txt", "Report.txt");
-        std::cout<< "жалгастыру ушин пернени басыныз...";
+        std::cout << "press enter to continue...";
         std::cin.ignore();
         std::cin.get();
     }
-    void barinoshiru()
+    void deleteAll()
     {
         int r;
         ifstream infile;
         infile.open("Report.txt", ios::binary);
         if (!infile)
         {
-            std::cout<< "ФАЙЛ АШЫЛМАЙДЫ..." << endl;
+            std::cout << "error: can`t open file..." << endl;
             std::cin.ignore();
             std::cin.get();
         }
         ofstream outfile;
         outfile.open("Record2.txt", ios::binary);
         infile.seekg(0, ios::beg);
-        std::cout<< "\t\t\t\t=============================================\n\n";
+        std::cout << "\t\t\t\t=============================================\n\n";
         infile.close();
         outfile.close();
         remove("Report.txt");
         r = rename("Record2.txt", "Report.txt");
-        std::cout<< "БАРЛЫК МАЛИМЕТТЕР ЖОЙЫЛДЫ\n"
-             << endl;
-        std::cout<< "жалгастыру ушин пернени басыныз...";
+        std::cout << "ALL DATA IS REMOVED\n"
+                  << endl;
+        std::cout << "press enter to continue...";
         std::cin.ignore();
         std::cin.get();
     }
-    void anyktama(int n)
+    void reference(int n)
     {
         system("cls");
         student s;
         ofstream out;
-        out.open("Справка.doc");
+        out.open("reference.doc");
         if (out.fail())
         {
-            std::cout<< "ФАЙЛ АШЫЛМАДЫ..." << endl;
+            std::cout << "error: can`t open file..." << endl;
             std::cin.ignore();
             std::cin.get();
         }
@@ -549,35 +549,34 @@ public:
         infile.open("Report.txt", ios::app | ios::binary);
         if (infile.fail())
         {
-            std::cout<< "ФАЙЛ АШЫЛМАДЫ...";
+            std::cout << "error: can`t open file...";
             std::cin.ignore();
             std::cin.get();
         }
         bool y = false;
-        std::cout<< "\t\t\t\t==========АНЫКТАМА БЕРУ==========\n\n";
+        std::cout << "\t\t\t\t==========GET REFERENCE==========\n\n";
         while (infile.read(reinterpret_cast<char *>(&s), sizeof(student)))
         {
             if (s.nom == n)
             {
                 out << "\n\n";
-                out << "\t\t\t\t\t АНЫКТАМА\n\n";
-                out << "\tАзамат(ша) " << s.name << " берилген, ол ис жузинде Л.Н.Гумилев атындагы Еуразия улттык университетинин (мемлекеттик лицензиясы KZ39LAA00007162, берилген куни 31.05.2016 жыл, мерзими шексиз) оку тури кундизги болиминде " << s.gr << " тобынын билим алушысы болып табылады\nОкыту формасы: Мемлекеттик грант\nАныктама 2020-2021 оку жылына жарамды\nОку орындагы оку мерзими: 4 жыл\n\n\n\nМ О\n\nБилим алушыларга кызмет\nкорсету орталыгынын жетекшиси \t\t Канагатова Раушан Нурсагатовна" << endl;
-                std::cout<< "\t\t\t\tАныктама берилди" << endl;
+                out << "\t\t\t\t\t REFERENCE\n\n";
+                out << "\tThis reference is given to " << s.name << "  to confirm that he(she) is a student of L.N.Gumilyov Eurasian National University NPJSC (state license No. No KZ53LAA00018550, date of issue 06.08.2020 year without time limitation) of the 3 year of full-time study in group " << s.gr << ". \nPresent reference is valid for 2021-2022 academic year\nThe term of study at the university is 4 years.\n\n\n\nThe document was signed by: Head of the registrar`s office Kydyrbaeva A.T.tel +7(7172) 70-95-00" << endl;
+                std::cout << "\t\t\t\tReference issued" << endl;
                 y = true;
             }
         }
         infile.close();
         if (y == false)
-            std::cout<< "\t\t\t\tМАЛИМЕТ ТАБЫЛМАДЫ..." << endl;
-        std::cout<< endl;
+            std::cout << "\t\t\t\tINFO NOT FOUND..." << endl;
+        std::cout << endl;
         out.close();
-        std::cout<< endl;
-        std::cout<< "жалгастыру ушин пернени басыныз...";
+        std::cout << endl;
+        std::cout << "press enter to continue...";
         std::cin.ignore();
         std::cin.get();
     }
 };
-
 
 int main()
 {
@@ -587,38 +586,35 @@ int main()
     system("color cf");
     char c;
     system("cls");
-    s.kirispe();
+    s.welcome();
     do
     {
-        std::cout<< "\n\n\n";
-        std::cout<< endl;
-        std::cout<< "\t\t\t\t\t <<< 1. БАС МАЗИР >>>\n\n";
-        std::cout<< "\t\t\t\t\t <<< 2. ШЫГУ >>>\n\n";
-        std::cout<< "\t Тандау жасаныз :";
+        std::cout << "\n\n\n";
+        std::cout << endl;
+        std::cout << "\t\t\t\t\t <<< 1. MENU >>>\n\n";
+        std::cout << "\t\t\t\t\t <<< 2. EXIT >>>\n\n";
+        std::cout << "\t MAKE A CHOICE:";
         std::cin >> c;
         system("cls");
         switch (c)
         {
         case '1':
         {
-            s.basmazir();
+            s.Menu();
             break;
         }
         case '2':
         {
-            std::cout<< "\n\n";
-            std::cout<< "\t\t\t\t РАХМЕТ, САУ БОЛЫНЫЗ! " << endl;
-            std::cout<< "=======================================================================================" << endl;
-            std::cout<< "\n\n";
-            std::cout<< "\t КЕРИ БАЙЛАНЫС";
-            std::cout<< "\n\n\n";
-            std::cout<< "\t АТЫ-ЖОНИ БАЙЛАНЫС НОМЕРИ \n\n";
-            std::cout<< "\t 1. Нургазиев Аслан Администратор +77474461688 \n\n";
-            std::cout<< "\t 2. Мырзарахимова Жанар Эдвайзер +77756489069 \n\n";
-            std::cout<< "\t 3. Газизова Назерке Багдарлама жасаушы +77474058836 \n\n";
-            std::cout<< "\t 4. Кажибеков Максат Call-center +77001257770 \n\n";
-            std::cout<< "\n\n";
-            std::cout<< "\n\n";
+            std::cout << "\n\n";
+            std::cout << "\t\t\t\t GOOD BYE! " << endl;
+            std::cout << "=======================================================================================" << endl;
+            std::cout << "\n\n";
+            std::cout << "\t FEEDBACK";
+            std::cout << "\n\n\n";
+            std::cout << "\t ADVIZER +77756489069 \n\n";
+            std::cout << "\t Call-center 7770 \n\n";
+            std::cout << "\n\n";
+            std::cout << "\n\n";
         }
         }
     } while (c != '2');
